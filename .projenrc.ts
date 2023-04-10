@@ -1,17 +1,39 @@
-import { cdktf } from 'projen';
+import {cdktf, gitlab} from 'projen';
 const project = new cdktf.ConstructLibraryCdktf({
   author: 'Dominik Jakielski',
-  authorAddress: 'd.jakielski@reply.de',
-  cdktfVersion: '^0.13.0',
+  authorAddress: 'dominik@jakielski.de',
+  cdktfVersion: '^0.15.0',
   defaultReleaseBranch: 'main',
   jsiiVersion: '~5.0.0',
-  name: 'tfcdk-nodejs-function',
+  name: 'cdktf-nodejs-function',
   projenrcTs: true,
-  repositoryUrl: 'https://gitlab.com/dj-tfcdk-libraries/tfcdk-nodejs-function.git',
+  repositoryUrl: 'https://gitlab.com/dj-cdktf-libraries/cdktf-nodejs-function.git',
+  releaseToNpm: true,
+  github: false,
 
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+   deps: ["esbuild@^0.17.5"],
+   description: "construct library for nodejs lambda function",
+});
+project.addPeerDeps(
+    "@cdktf/provider-aws@12.x"
+);
+new gitlab.GitlabConfiguration(project, {
+  stages: ["test", "release"],
+  default: {
+    image: {
+      name:"node:19-alpine"
+    }
+  },
+  jobs: {
+    test: {
+      script: ["yarn test"],
+      stage: "test"
+    },
+    release: {
+      script: ["yarn run release"],
+      stage: "release",
+      only: ["tags"]
+    }
+  }
 });
 project.synth();

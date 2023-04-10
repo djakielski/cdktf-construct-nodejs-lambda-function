@@ -2,7 +2,7 @@
 
 default:
   image:
-    name: node@19-alpine
+    name: node:19-alpine
 stages:
   - test
   - release

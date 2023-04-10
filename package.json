@@ -1,8 +1,9 @@
 {
-  "name": "tfcdk-nodejs-function",
+  "name": "cdktf-nodejs-function",
+  "description": "construct library for nodejs lambda function",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/dj-tfcdk-libraries/tfcdk-nodejs-function.git"
+    "url": "https://gitlab.com/dj-cdktf-libraries/cdktf-nodejs-function.git"
   },
   "scripts": {
     "build": "npx projen build",
@@ -30,15 +31,16 @@
   },
   "author": {
     "name": "Dominik Jakielski",
-    "email": "d.jakielski@reply.de",
+    "email": "dominik@jakielski.de",
     "organization": false
   },
   "devDependencies": {
+    "@cdktf/provider-aws": "12.0.0",
     "@types/jest": "^29.5.0",
     "@types/node": "^16",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "cdktf": "0.13.0",
+    "cdktf": "0.15.0",
     "constructs": "10.0.12",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.7",
@@ -58,8 +60,12 @@
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "cdktf": "^0.13.0",
+    "@cdktf/provider-aws": "12.x",
+    "cdktf": "^0.15.0",
     "constructs": "^10.0.12"
+  },
+  "dependencies": {
+    "esbuild": "^0.17.5"
   },
   "keywords": [
     "cdk",
