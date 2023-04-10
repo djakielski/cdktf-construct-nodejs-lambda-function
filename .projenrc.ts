@@ -26,11 +26,11 @@ new gitlab.GitlabConfiguration(project, {
   },
   jobs: {
     test: {
-      script: ["yarn test"],
+      script: ["yarn install --frozen-lockfile","yarn test"],
       stage: "test"
     },
     release: {
-      script: ["yarn run release"],
+      script: ["yarn install --frozen-lockfile","yarn run release"],
       stage: "release",
       only: ["tags"]
     }
