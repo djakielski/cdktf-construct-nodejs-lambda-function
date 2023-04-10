@@ -68,6 +68,7 @@
   "dependencies": {
     "esbuild": "^0.17.5"
   },
+  "pnpm": {},
   "keywords": [
     "cdk",
     "cdktf"

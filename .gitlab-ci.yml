@@ -8,13 +8,13 @@ stages:
   - release
 test:
   script:
-    - yarn install --frozen-lockfile
-    - yarn test
+    - pnpm install
+    - pnpm test
   stage: test
 release:
   script:
-    - yarn install --frozen-lockfile
-    - yarn run release
+    - pnpm install
+    - pnpm run release
   stage: release
   only:
     - tags

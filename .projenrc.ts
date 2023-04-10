@@ -1,5 +1,6 @@
 import {cdktf, gitlab} from 'projen';
-import {UpdateSnapshot} from "projen/lib/javascript";
+import {NodePackageManager, UpdateSnapshot} from "projen/lib/javascript";
+import {ReleaseTrigger} from "projen/lib/release";
 
 const project = new cdktf.ConstructLibraryCdktf({
   author: 'Dominik Jakielski',
@@ -17,6 +18,9 @@ const project = new cdktf.ConstructLibraryCdktf({
     updateSnapshot: UpdateSnapshot.NEVER
   },
   description: "construct library for nodejs lambda function",
+  release: true,
+  releaseTrigger: ReleaseTrigger.continuous(),
+  packageManager: NodePackageManager.PNPM,
 });
 project.addPeerDeps(
     "@cdktf/provider-aws@12.x"
@@ -30,11 +34,11 @@ new gitlab.GitlabConfiguration(project, {
   },
   jobs: {
     test: {
-      script: ["yarn install --frozen-lockfile","yarn test"],
+      script: ["pnpm install","pnpm test"],
       stage: "test"
     },
     release: {
-      script: ["yarn install --frozen-lockfile","yarn run release"],
+      script: ["pnpm install","pnpm run release"],
       stage: "release",
       only: ["tags"]
     }
