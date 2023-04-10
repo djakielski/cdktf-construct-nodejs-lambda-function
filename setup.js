@@ -1,0 +1,1 @@
+require("cdktf").Testing.setupJest();

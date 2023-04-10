@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test NodejsFunction snapshotTest 1`] = `
+"{
+  \\"resource\\": {
+    \\"aws_lambda_function\\": {
+      \\"function\\": {
+        \\"filename\\": \\"assets/function_function-code_lambda-asset_[HASH REMOVED]/[HASH REMOVED]/archive.zip\\",
+        \\"function_name\\": \\"myNodeJsFunction\\",
+        \\"handler\\": \\"index.handler\\",
+        \\"lifecycle\\": {
+          \\"ignore_changes\\": [
+            \\"source_code_hash\\"
+          ]
+        },
+        \\"role\\": \\"myIamRole\\",
+        \\"runtime\\": \\"nodejs18.x\\",
+        \\"source_code_hash\\": \\"[HASH REMOVED]\\"
+      }
+    }
+  }
+}"
+`;
