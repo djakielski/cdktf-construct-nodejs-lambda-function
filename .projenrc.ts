@@ -1,4 +1,6 @@
 import {cdktf, gitlab} from 'projen';
+import {UpdateSnapshot} from "projen/lib/javascript";
+
 const project = new cdktf.ConstructLibraryCdktf({
   author: 'Dominik Jakielski',
   authorAddress: 'dominik@jakielski.de',
@@ -10,9 +12,11 @@ const project = new cdktf.ConstructLibraryCdktf({
   repositoryUrl: 'https://gitlab.com/dj-cdktf-libraries/cdktf-nodejs-function.git',
   releaseToNpm: true,
   github: false,
-
-   deps: ["esbuild@^0.17.5"],
-   description: "construct library for nodejs lambda function",
+  deps: ["esbuild@^0.17.5"],
+  jestOptions: {
+    updateSnapshot: UpdateSnapshot.NEVER
+  },
+  description: "construct library for nodejs lambda function",
 });
 project.addPeerDeps(
     "@cdktf/provider-aws@12.x"

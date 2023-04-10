@@ -8,10 +8,12 @@ stages:
   - release
 test:
   script:
+    - yarn install --frozen-lockfile
     - yarn test
   stage: test
 release:
   script:
+    - yarn install --frozen-lockfile
     - yarn run release
   stage: release
   only:
