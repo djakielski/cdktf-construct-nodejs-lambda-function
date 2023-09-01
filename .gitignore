@@ -45,3 +45,4 @@ junit.xml
 tsconfig.json
 !/API.md
 !/.gitlab-ci.yml
+.idea
