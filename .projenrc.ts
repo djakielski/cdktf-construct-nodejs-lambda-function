@@ -22,6 +22,7 @@ const project = new cdktf.ConstructLibraryCdktf({
     dirs: [],
     prettier: true,
   },
+  pnpmVersion: "8",
   devDeps: ["esbuild@^0.19.2", "testcontainers"],
   jestOptions: {
     updateSnapshot: UpdateSnapshot.NEVER,

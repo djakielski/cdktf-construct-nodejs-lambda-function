@@ -1,1 +1,1 @@
-# replace this
+# Construct library for a Node.js function
