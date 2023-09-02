@@ -16,17 +16,17 @@
     },
     {
       "name": "@typescript-eslint/eslint-plugin",
-      "version": "^5",
+      "version": "^6",
       "type": "build"
     },
     {
       "name": "@typescript-eslint/parser",
-      "version": "^5",
+      "version": "^6",
       "type": "build"
     },
     {
       "name": "cdktf",
-      "version": "0.15.0",
+      "version": "0.18.0",
       "type": "build"
     },
     {
@@ -73,6 +73,11 @@
       "type": "build"
     },
     {
+      "name": "jsii-rosetta",
+      "version": "~5.0.0",
+      "type": "build"
+    },
+    {
       "name": "jsii",
       "version": "~5.0.0",
       "type": "build"
@@ -110,7 +115,7 @@
     },
     {
       "name": "cdktf",
-      "version": "^0.15.0",
+      "version": "^0.18.0",
       "type": "peer"
     },
     {
