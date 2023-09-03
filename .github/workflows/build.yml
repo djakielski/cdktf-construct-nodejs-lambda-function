@@ -22,7 +22,11 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: "8"
+          version: "7"
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.0.0
       - name: Install dependencies
         run: pnpm i --no-frozen-lockfile
       - name: build
@@ -91,7 +95,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.0.0
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
@@ -103,7 +107,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: "8"
+          version: "7"
       - name: Prepare Repository
         run: mv dist .repo
       - name: Install Dependencies

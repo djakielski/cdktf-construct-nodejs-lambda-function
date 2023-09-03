@@ -126,7 +126,7 @@
       "description": "Runs eslint against the codebase",
       "steps": [
         {
-          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern test build-tools projenrc .projenrc.ts"
+          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools projenrc .projenrc.ts"
         }
       ]
     },
@@ -184,10 +184,6 @@
         }
       ]
     },
-    "post-upgrade": {
-      "name": "post-upgrade",
-      "description": "Runs after upgrading dependencies"
-    },
     "pre-compile": {
       "name": "pre-compile",
       "description": "Prepare the project for compilation"
@@ -196,7 +192,8 @@
       "name": "release",
       "description": "Prepare a release from \"main\" branch",
       "env": {
-        "RELEASE": "true"
+        "RELEASE": "true",
+        "MIN_MAJOR": "1"
       },
       "steps": [
         {
@@ -221,7 +218,7 @@
       "description": "Run tests",
       "steps": [
         {
-          "exec": "jest --passWithNoTests --ci",
+          "exec": "jest --passWithNoTests --coverageProvider=v8 --ci",
           "receiveArgs": true
         },
         {
@@ -234,7 +231,7 @@
       "description": "Update jest snapshots",
       "steps": [
         {
-          "exec": "jest --updateSnapshot --passWithNoTests --ci",
+          "exec": "jest --updateSnapshot --passWithNoTests --coverageProvider=v8 --ci",
           "receiveArgs": true
         }
       ]
@@ -261,33 +258,6 @@
       "steps": [
         {
           "builtin": "release/reset-version"
-        }
-      ]
-    },
-    "upgrade": {
-      "name": "upgrade",
-      "description": "upgrade dependencies",
-      "env": {
-        "CI": "0"
-      },
-      "steps": [
-        {
-          "exec": "pnpm update npm-check-updates"
-        },
-        {
-          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,esbuild,eslint-config-prettier,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,jest,jest-junit,jsii-diff,jsii-docgen,jsii-pacmak,npm-check-updates,prettier,projen,standard-version,testcontainers,ts-jest,ts-node,typescript,cdktf,constructs"
-        },
-        {
-          "exec": "pnpm i --no-frozen-lockfile"
-        },
-        {
-          "exec": "pnpm update @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser esbuild eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak npm-check-updates prettier projen standard-version testcontainers ts-jest ts-node typescript cdktf constructs"
-        },
-        {
-          "exec": "npx projen"
-        },
-        {
-          "spawn": "post-upgrade"
         }
       ]
     },
